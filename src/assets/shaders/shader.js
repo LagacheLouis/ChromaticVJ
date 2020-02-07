@@ -28,6 +28,11 @@ export default {
             name: "uZoom",
             type: "1f",
             value: 2,
+        },
+        aber: {
+            name: "uAber",
+            type: "1f",
+            value: 0.1,
         }
     }
 }

@@ -16,6 +16,7 @@ uniform float uDifference;
 uniform float uRotate;
 uniform float uSlices;
 uniform float uZoom;
+uniform float uAber;
 
 const float pi = 3.14159;
 const float globalFactor = 1.0;
@@ -60,8 +61,8 @@ void main() {
     vec2 uv = vTextureCoord;
 
     vec2 uvR = ko(uv, uDifference);
-    vec2 uvG = ko(uv, uDifference * 1.1);
-    vec2 uvB = ko(uv, uDifference * 1.2);
+    vec2 uvG = ko(uv, uDifference * 1. + uAber);
+    vec2 uvB = ko(uv, uDifference * 1. + uAber * 2.);
 
     float r = texture2D(uSampler0,uvR).r;
     float g = texture2D(uSampler0,uvG).g;

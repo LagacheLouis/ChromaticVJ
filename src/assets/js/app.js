@@ -61,9 +61,11 @@ window.onload = function () {
     var plane = webGLCurtain.addPlane(planeElement, params);
 
     let sickGUI = new SickGUI();
-    sickGUI.add({ name: "rotate", keyCode: 65, value: 0.1, min: -10, max: 10 });
-    sickGUI.add({ name: "slices", keyCode: 90, value: 1, min: 1, max: 100 });
-    sickGUI.add({ name: "zoom", keyCode: 69, value: 0.1, min: 0 , max: 200 })
+    sickGUI.add({ name: "rotate", keyCode: 65, value: 0.1, min: -5, max: 5 });
+    sickGUI.add({ name: "slices", keyCode: 90, value: 1, min: 1, max: 30 });
+    sickGUI.add({ name: "zoom", keyCode: 69, value: 2, min: 0 , max: 20 });
+    sickGUI.add({ name: "aber", keyCode: 82, value: 0.1, min: 0 , max: 1 });
+    sickGUI.add({ name: "pulse", keyCode: 84, value: 0.5, min: 0 , max: 3 })
 
     // if our plane has been successfully created
     // we use the onRender method of our plane fired at each requestAnimationFrame call
@@ -78,10 +80,11 @@ window.onload = function () {
         console.log(sickGUI.data["slices"].value);
 
         plane.uniforms.time.value += delta;
-        plane.uniforms.difference.value = data.difference * 0.5;
+        plane.uniforms.difference.value = data.difference * sickGUI.data["pulse"].value;
         plane.uniforms.rotate.value += delta * sickGUI.data["rotate"].value;
         plane.uniforms.slices.value = sickGUI.data["slices"].value;
         plane.uniforms.zoom.value = sickGUI.data["zoom"].value;
+        plane.uniforms.aber.value = sickGUI.data["aber"].value;
 
     });
 
