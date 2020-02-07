@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, minimal-ui, viewport-fit=cover, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <link rel="icon" type="image/png" href="../assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
-    <title>Chromazik</title>
-    <link href="./assets/css/style.css" rel="stylesheet">
-</head>
-<body>
-    <!-- div that will hold our WebGL canvas -->
-    <div id="canvas"></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, minimal-ui, viewport-fit=cover, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <title>Chromazik</title>
+        <link href="./assets/scss/style.scss" rel="stylesheet">
+    </head>
+    <body>
+        <!-- div that will hold our WebGL canvas -->
+        <div id="canvas"></div>
 
-    <!-- div used to create our plane -->
-    <div class="curtain-plane">
-        <!-- image that will be used as a texture by our plane -->
-        <video autoplay loop muted playsinline>
-            <source src="./assets/video/kid.webm" type="video/webm" />
-        </video> 
-    </div>
-    <audio id="audio" preload="none" controls='true'>
-        <source></source>
-    </audio>
- 
-    <script src="./assets/dist/js/lib.min.js"></script>
-    <script type="module" src="./assets/js/app.js"></script>
-</body>
+        <!-- div used to create our plane -->
+        <div class="curtain-plane">
+            <!-- image that will be used as a texture by our plane -->
+            <video autoplay loop muted playsinline>
+                <source src="./assets/video/kid.webm" type="video/webm" />
+            </video> 
+        </div>
+        <audio id="audio" preload="none" controls='true'>
+            <source></source>
+        </audio>
+    
+       <script type="module" src="./assets/js/app.js"></script>
+    </body>
 </html>
