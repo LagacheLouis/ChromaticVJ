@@ -72,6 +72,7 @@ void main() {
   //  vec4 color = vec4(uvR.x,uvR.y,0.0,1.0);
     vec4 color = vec4(r,g,b,1.0);
     //vec4 color = texture2D(uSampler0,uv);
+   // vec4 color = texture2D(uSampler0, fract(uv * 2.));
 
     gl_FragColor = color;
 }

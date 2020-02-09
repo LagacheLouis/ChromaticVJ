@@ -1,8 +1,10 @@
+import { Curtains } from 'curtainsjs';
 import Audio from "./modules/Audio.js";
 import AudioAnalyser from "./modules/AudioAnalyser.js";
 import shader from "../shaders/shader.js";
 import SickGUI from "./modules/SickGUI.js";
-import { Curtains } from 'curtainsjs';
+import pixel from "../shaders/pixel.js";
+
 
 window.onload = function () {
 
@@ -15,7 +17,7 @@ window.onload = function () {
     });
     let analyser = new AudioAnalyser({ audio: audio, fftSize: 1024 });
 
-    analyser.debugger.on = true;
+   // analyser.debugger.on = true;
 
 
     let mouse = { x: 0, y: 0 };
@@ -24,7 +26,7 @@ window.onload = function () {
         mouse.y = e.clientY;
     }
 
-    window.addEventListener("click", () => {
+   /* window.addEventListener("click", () => {
         if (!audio.started) {
             audio.start();
         } else {
@@ -34,7 +36,7 @@ window.onload = function () {
                 audio.nextTrack();
             }
         }
-    });
+    });*/
 
 
     // set up our WebGL context and append the canvas to our wrapper
@@ -52,9 +54,9 @@ window.onload = function () {
 
     // set our initial parameters (basic uniforms)
     var params = {
-        vertexShader: shader.vertex,
-        fragmentShader: shader.fragment,
-        uniforms: shader.uniforms
+        vertexShader: pixel.vertex,
+        fragmentShader: pixel.fragment,
+        uniforms: pixel.uniforms
     }
 
     // create our plane mesh
@@ -62,7 +64,7 @@ window.onload = function () {
 
     let sickGUI = new SickGUI();
     sickGUI.add({ name: "rotate", keyCode: 65, value: 0.1, min: -5, max: 5 });
-    sickGUI.add({ name: "slices", keyCode: 90, value: 1, min: 1, max: 30 });
+    sickGUI.add({ name: "slices", keyCode: 90, value: 2, min: 2, max: 30 });
     sickGUI.add({ name: "zoom", keyCode: 69, value: 2, min: 0 , max: 20 });
     sickGUI.add({ name: "aber", keyCode: 82, value: 0.1, min: 0 , max: 1 });
     sickGUI.add({ name: "pulse", keyCode: 84, value: 0.5, min: 0 , max: 3 })
@@ -77,14 +79,14 @@ window.onload = function () {
         analyser.debug();
         let data = analyser.getData();
 
-        console.log(sickGUI.data["slices"].value);
-
         plane.uniforms.time.value += delta;
-        plane.uniforms.difference.value = data.difference * sickGUI.data["pulse"].value;
+        plane.uniforms.volume.value =  sickGUI.data["pulse"].value;
+
+      /*plane.uniforms.difference.value = data.difference * sickGUI.data["pulse"].value;
         plane.uniforms.rotate.value += delta * sickGUI.data["rotate"].value;
         plane.uniforms.slices.value = sickGUI.data["slices"].value;
         plane.uniforms.zoom.value = sickGUI.data["zoom"].value;
-        plane.uniforms.aber.value = sickGUI.data["aber"].value;
+        plane.uniforms.aber.value = sickGUI.data["aber"].value;*/
 
     });
 
